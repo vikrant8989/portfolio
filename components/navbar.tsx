@@ -33,12 +33,18 @@ export default function Navbar() {
   ]
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    const targetId = href.replace("#", "")
-    const elem = document.getElementById(targetId)
-    elem?.scrollIntoView({ behavior: "smooth" })
-    setIsOpen(false)
-  }
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const elem = document.getElementById(targetId);
+    
+    if (elem) {
+      setIsOpen(false); // Close the mobile menu first
+      setTimeout(() => {
+        elem.scrollIntoView({ behavior: "smooth" });
+      }, 300); // Delay scrolling to allow menu close animation
+    }
+  };
+  
 
   const iconVariants = {
     initial: { scale: 1 },
@@ -113,7 +119,7 @@ export default function Navbar() {
         {/* Mobile Navigation Toggle */}
         <div className="md:hidden flex items-center space-x-4">
           <motion.a
-            href="https://calendly.com/aakash4dev/quickchat"
+            href="https://calendly.com/vikrantzone123/30min"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors duration-300"
@@ -125,7 +131,7 @@ export default function Navbar() {
             <Calendar size={24} />
           </motion.a>
           <motion.a
-            href="https://github.com/aakash4dev"
+            href="https://github.com/vikrant8989"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors duration-300"
@@ -137,7 +143,7 @@ export default function Navbar() {
             <Github size={24} />
           </motion.a>
           <motion.a
-            href="https://linkedin.com/in/aakash4dev"
+            href="https://www.linkedin.com/in/vikrant-pratap-singh-5936451b2/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white transition-colors duration-300"
