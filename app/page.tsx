@@ -183,31 +183,31 @@ export default function Home() {
                 title="Data Service Portal"
                 description="Pioneered the transition to Microsoft Fabric, consolidating five platforms into one. Achieved a 60% efficiency boost by streamlining interactions with Fabric via a Next.js-powered application."
                 tags={["Next.js", "Microsoft Fabric", "Data Management"]}
-                image="https://images.unsplash.com/photo-1556741533-411cf82e4e2d"
+                image="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=2070&auto=format&fit=crop"
               />
               <ProjectCard
                 title="Route Data Management"
                 description="Developed a Next.js application for British American Tobacco (BAT) to replace Excel-based transport data management. Improved operational efficiency by 25% and data accuracy by 30%."
                 tags={["Next.js", "Data Processing", "Transport Management"]}
-                image="https://images.unsplash.com/photo-1573164713988-8665fc963095"
+                image="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2070&auto=format&fit=crop"
               />
               <ProjectCard
                 title="MadClub - Trekking Website"
                 description="Built a Next.js-powered trekking platform featuring real-time booking, interactive route maps, and a vibrant community forum. Increased user engagement by 40% and cut manual booking efforts by 60%."
                 tags={["Next.js", "Booking System", "Community Platform"]}
-                image="https://images.unsplash.com/photo-1521336575822-6da63fb45455"
+                image="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop"
               />
               <ProjectCard
                 title="NammaStore - Luggage Storage Platform"
                 description="Developed a Next.js-based platform enabling users to find and book secure luggage storage. Integrated real-time availability tracking and payments, reducing booking time by 50% and increasing customer satisfaction by 35%."
                 tags={["Next.js", "Real-Time Tracking", "Payment Integration"]}
-                image="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                image="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
               />
               <ProjectCard
                 title="HyperApps - AI-Powered Rapid App Development"
                 description="Engineered a Next.js platform for quick app creation using Generative AI (GenAI). Integrated modular templates and AI-powered code generation, reducing development time by 80% and accelerating go-to-market speed by 60%."
                 tags={["Next.js", "GenAI", "Low-Code Development"]}
-                image="https://images.unsplash.com/photo-1562813733-b31f71025d54"
+                image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
               />
             </div>
           </motion.div>
@@ -385,7 +385,6 @@ const ProjectCard = ({ title, description, tags, image }) => {
     </div>
   );
 };
-
 
 function ContactEmail() {
   return (
