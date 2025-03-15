@@ -22,6 +22,7 @@ import {
   Cloud,
   Lightbulb,
   Facebook,
+  Loader,
 } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
 import CustomCursor from "@/components/custom-cursor";
@@ -32,11 +33,12 @@ import AboutMe from "@/components/about-me";
 import Loading from "@/components/loading";
 import InteractiveShapes from "@/components/InteractiveShapes";
 import AnimatedBoxes from "@/components/AnimatedBoxes";
+import { toast } from "sonner";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const [loader, setLoader] = useState(false); 
   useEffect(() => {
     setMounted(true);
     const timer = setTimeout(() => {
@@ -49,12 +51,39 @@ export default function Home() {
   if (!mounted) return null;
   if (loading) return <Loading />;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // You can add a console.log here if you want to verify it's working
-    console.log("Form submission prevented");
-  };
+    setLoader(true); // Start loading
 
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      const response = await fetch("/api/send-mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json(); // Get response JSON
+      setLoader(false); // Stop loading
+      if (response.ok) {
+        toast(data.message || "Message sent successfully!" );
+        e.target.reset();
+      } else {
+        toast(data.message || "Failed to send message.");
+      }
+    } catch (error) {
+      setLoading(false);
+      toast("Something went wrong! Try again later.");
+    }
+  };
+  const showToast = () => {
+    toast("Success Message sent successfully!");
+  }
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       <CustomCursor />
@@ -77,7 +106,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
               Hey! It's Vikrant Pratap Singh
             </h1>
-            <h2 className="text-xl md:text-2xl mb-8 text-gray-300">
+            <h2 className="text-xl md:text-2xl mb-8 text-gray-300" onClick={showToast}>
               🚀 Full-Stack Developer | Gen AI | Tech Explorer
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
@@ -276,9 +305,17 @@ export default function Home() {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+                    className="w-full flex items-center justify-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+                    disabled={loader}
                   >
-                    Send Message
+                    {loader ? (
+                      <>
+                        <Loader className="animate-spin mr-2 h-5 w-5" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </form>
                 <div className="mt-6 text-center">
